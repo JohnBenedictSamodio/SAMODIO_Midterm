@@ -1,0 +1,133 @@
+import java.util.Scanner;
+
+public class App {
+
+
+    public static void main(String[] args) throws Exception {
+
+        Scanner scanner = new Scanner(System.in);
+
+        final int FEE_PER_UNIT = 1000;  // Fee per unit
+
+        String name, course, courseCode;
+        int numberOfUnits, totalFee = 0, payment;
+        boolean validUnits = false;
+
+        // Input student details
+        System.out.println("Enter Student Name: ");
+        name = scanner.nextLine();
+
+        System.out.println("Enter Course Name: ");
+        course = scanner.nextLine();
+
+        System.out.println("Enter Course Code: ");
+        courseCode = scanner.nextLine();
+
+        while (!validUnits) {
+        	
+            System.out.println("Enter Number of Units (max 10): ");
+            numberOfUnits = scanner.nextInt();
+            
+            if (numberOfUnits > 0 && numberOfUnits <= 10) {
+                validUnits = true;
+                totalFee = numberOfUnits * FEE_PER_UNIT;  // Calculate total fee
+            } else {
+                System.out.println("Invalid number of units. Please enter a value between 1 and 10.");
+            }
+        }
+        
+
+        // Output student's name and total enrollment fee
+        System.out.println("Student Name: " + name);
+        System.out.println("Course: " + course + " (" + courseCode + ")");
+        System.out.println("Total Enrollment Fee: " + totalFee);
+
+        //  payment
+        System.out.println("Enter Payment Amount: ");
+        payment = scanner.nextInt();
+
+        if (payment == totalFee) {
+            System.out.println("Fully Paid");
+        } else if (payment < totalFee) {
+            System.out.println("Partial Payment. Amount Paid: " + payment);
+        } else {
+            System.out.println("Overpayment! Payment exceeds the total fee.");
+        }
+
+
+
+
+
+
+
+
+    }
+    
+    public class Person {
+
+        String name;
+        int age;
+
+        public Person(String name, int age){
+            this.name = name;
+            this.age = age;
+        }
+
+        public void displayInfo(){
+            System.out.println("Name: "+name);
+            System.out.println("Age: "+age);
+        }
+
+    }
+    public class Student extends Person {
+
+        String studentID, course;
+        int units;
+        final int feePerUnit = 1000;
+
+        public Student (String name, int age, String studentID, String course, int units ){
+
+            super(name, age);
+            this.studentID = studentID;
+            this.course = course;
+            this.units = units;
+        }
+
+        public double calculateFees(){
+            return units * feePerUnit;
+        }
+
+        public void displayInfo(){
+            super.displayInfo();
+            System.out.println("studentID: "+studentID);
+            System.out.println("course: "+course);
+            System.out.println("units: "+units);
+            System.out.println("Total fees: "+calculateFees());
+        }
+    
+
+    }
+    
+    public class Instructor extends Person {
+
+        String employeeID, department;
+        double salary;
+
+        public Instructor (String name, int age, String employeeID, String department, double salary ){
+
+            super(name, age);
+            this.employeeID = employeeID;
+            this.department = department;
+            this.salary = salary;
+        }
+
+        public void displayInfo(){
+            super.displayInfo();
+            System.out.println("employeeID: "+employeeID);
+            System.out.println("department: "+department);
+            System.out.println("salary: "+salary);
+        }
+    }
+    
+
+}
